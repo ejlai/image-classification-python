@@ -1,4 +1,5 @@
 # Updated for Python3 | 6/24/2019
+# This file is to replace global.py
 #-----------------------------------
 # GLOBAL FEATURE EXTRACTION
 #-----------------------------------
@@ -62,7 +63,7 @@ i, j = 0, 0
 k = 0
 
 # num of images per class
-images_per_class = 80
+images_per_class = 15
 
 # loop over the training data sub-folders
 for training_name in train_labels:
