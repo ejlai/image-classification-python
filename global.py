@@ -1,3 +1,8 @@
+# Updated for Python3 | 6/24/2019
+# global may be a preserved keyword. In order to call the functions defined here from train_test.py, 
+# one may need to rename global.py to something else (e.g. MakeDataset.py). 
+# Then you can use the import statement: import fd_hu_moments from MakeDataset
+
 #-----------------------------------
 # GLOBAL FEATURE EXTRACTION
 #-----------------------------------
@@ -84,7 +89,7 @@ for training_name in train_labels:
     # loop over the images in each sub-folder
     for x in range(1,images_per_class+1):
         # get the image file name
-        file = dir + "/" + str(x) + ".jpg"
+        file = dir + "/" + "image_" + str(x) + ".jpg" # missing image_
 
         # read the image and resize it to a fixed-size
         image = cv2.imread(file)
@@ -108,30 +113,30 @@ for training_name in train_labels:
 
         i += 1
         k += 1
-    print "[STATUS] processed folder: {}".format(current_label)
+    print ("[STATUS] processed folder: {}".format(current_label))
     j += 1
 
-print "[STATUS] completed Global Feature Extraction..."
+print ("[STATUS] completed Global Feature Extraction...")
 
 # get the overall feature vector size
-print "[STATUS] feature vector size {}".format(np.array(global_features).shape)
+print ("[STATUS] feature vector size {}".format(np.array(global_features).shape))
 
 # get the overall training label size
-print "[STATUS] training Labels {}".format(np.array(labels).shape)
+print ("[STATUS] training Labels {}".format(np.array(labels).shape))
 
 # encode the target labels
 targetNames = np.unique(labels)
 le = LabelEncoder()
 target = le.fit_transform(labels)
-print "[STATUS] training labels encoded..."
+print ("[STATUS] training labels encoded...")
 
 # normalize the feature vector in the range (0-1)
 scaler = MinMaxScaler(feature_range=(0, 1))
 rescaled_features = scaler.fit_transform(global_features)
-print "[STATUS] feature vector normalized..."
+print ("[STATUS] feature vector normalized...")
 
-print "[STATUS] target labels: {}".format(target)
-print "[STATUS] target labels shape: {}".format(target.shape)
+print ("[STATUS] target labels: {}".format(target))
+print ("[STATUS] target labels shape: {}".format(target.shape))
 
 # save the feature vector using HDF5
 h5f_data = h5py.File('output/data.h5', 'w')
@@ -143,4 +148,4 @@ h5f_label.create_dataset('dataset_1', data=np.array(target))
 h5f_data.close()
 h5f_label.close()
 
-print "[STATUS] end of training.."
+print ("[STATUS] end of training..")
