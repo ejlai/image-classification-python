@@ -1,4 +1,4 @@
-###Updated for Python3x 2019.6.24
+### Updated for Python3x 2019.6.24
 
 # Image Classification using Python and Machine Learning
 
